@@ -2,13 +2,12 @@ package com.github.mune0903.githubclient.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.data.remote.model.Event
 import com.github.mune0903.githubclient.databinding.ItemEventBinding
 
-class EventRecyclerViewAdapter :
+class EventRecyclerViewAdapter(private val listener: OnItemClickListener) :
     RecyclerView.Adapter<EventRecyclerViewAdapter.ViewHolder>() {
 
     val userActions = ArrayList<Event>()
@@ -27,6 +26,10 @@ class EventRecyclerViewAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = userActions[position]
         holder.binding.event = event
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(event: Event)
     }
 
     class ViewHolder(val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root)

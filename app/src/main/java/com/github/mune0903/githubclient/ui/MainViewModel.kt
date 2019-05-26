@@ -19,6 +19,9 @@ class MainViewModel(
     private val _event = MutableLiveData<List<Event>>()
     val event: LiveData<List<Event>> = _event
 
+    private val _load = MutableLiveData<Unit>()
+    val load: LiveData<Unit> = _load
+
     fun getEvent() {
         gitHubRepository.getEventList()
             .observeOnMainThread()
@@ -27,6 +30,10 @@ class MainViewModel(
             }, {
                 Timber.e(it)
             }).addTo(disposable)
+    }
+
+    private fun progressBar() {
+
     }
 
     override fun onCleared() {
