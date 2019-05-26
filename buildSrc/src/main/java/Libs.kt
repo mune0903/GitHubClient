@@ -10,7 +10,7 @@ object Libs {
         val moshi = "1.8.0"
         val groupie = "2.3.0"
         val lifecycle = "2.0.0"
-        val recyclerView = "27.1.1"
+        val recyclerView = "22.1.0"
         val glide = "4.9.0"
     }
 
