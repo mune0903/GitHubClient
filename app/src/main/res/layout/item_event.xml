@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="event"
+                type="com.github.mune0903.githubclient.data.remote.model.Event"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <ImageView
+                android:id="@+id/profile_image_view"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:image="@{event.actor.avatar_url}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="#f00"/>
+
+        <TextView
+                android:id="@+id/repository_name_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{event.repo.name}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/profile_image_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Repository Name"/>
+
+        <TextView
+                android:id="@+id/user_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:text="@{event.actor.login}"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toBottomOf="@id/repository_name_text_view"
+                app:layout_constraintStart_toEndOf="@id/profile_image_view"
+                tools:text="User Name"/>
+
+        <TextView
+                android:id="@+id/event_type_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:text="@{event.type}"
+                app:layout_constraintStart_toEndOf="@id/user_name_text_view"
+                app:layout_constraintTop_toBottomOf="@id/repository_name_text_view"
+                tools:text="type"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
