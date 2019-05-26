@@ -15,6 +15,7 @@ class MainViewModel(
 ) : ViewModel() {
 
     private val disposable = CompositeDisposable()
+
     private val _event = MutableLiveData<List<Event>>()
     val event: LiveData<List<Event>> = _event
 
