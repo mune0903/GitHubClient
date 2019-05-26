@@ -1,4 +1,6 @@
 package com.github.mune0903.githubclient.ui
 
-class MainFragment {
+import androidx.fragment.app.Fragment
+
+class MainFragment : Fragment() {
 }
