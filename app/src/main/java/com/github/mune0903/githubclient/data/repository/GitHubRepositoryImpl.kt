@@ -12,7 +12,7 @@ class GitHubRepositoryImpl(
 
     private val client by lazy { retrofit.create(GitHubClient::class.java) }
 
-    override fun getEvent(): Observable<List<Event>> {
+    override fun getEventList(): Observable<List<Event>> {
         return client.get()
             .observeOnMainThread()
     }
