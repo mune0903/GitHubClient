@@ -19,8 +19,8 @@ class MainViewModel(
     private val _event = MutableLiveData<List<Event>>()
     val event: LiveData<List<Event>> = _event
 
-    private val _load = MutableLiveData<Unit>()
-    val load: LiveData<Unit> = _load
+    private val _refresh = MutableLiveData<Unit>()
+    val refresh: LiveData<Unit> = _refresh
 
     fun getEvent() {
         gitHubRepository.getEventList()
@@ -32,8 +32,8 @@ class MainViewModel(
             }).addTo(disposable)
     }
 
-    private fun progressBar() {
-
+    fun setupSwipeRefresh() {
+        _refresh.value = Unit
     }
 
     override fun onCleared() {

@@ -12,6 +12,7 @@ import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.data.remote.model.Event
 import com.github.mune0903.githubclient.databinding.FragmentMainBinding
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
+import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment(), EventRecyclerViewAdapter.OnItemClickListener {
 
@@ -39,7 +40,8 @@ class MainFragment : Fragment(), EventRecyclerViewAdapter.OnItemClickListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
@@ -50,6 +52,7 @@ class MainFragment : Fragment(), EventRecyclerViewAdapter.OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupSwipeRefresh()
         binding.viewModel = viewModel
     }
 
@@ -63,6 +66,20 @@ class MainFragment : Fragment(), EventRecyclerViewAdapter.OnItemClickListener {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@MainFragment.adapter
         }
+    }
+
+    private fun setupSwipeRefresh() {
+        binding.swipeRefresh.apply {
+            setColorSchemeResources(R.color.accent)
+            setOnRefreshListener {
+                viewModel.getEvent()
+
+                if (swipe_refresh.isRefreshing) {
+                    swipe_refresh.isRefreshing = false
+                }
+            }
+        }
+
     }
 
     companion object {
