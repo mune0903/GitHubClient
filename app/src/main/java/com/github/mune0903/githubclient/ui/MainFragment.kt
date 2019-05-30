@@ -26,7 +26,6 @@ class MainFragment : Fragment(), EventRecyclerViewAdapter.OnItemClickListener {
         super.onCreate(savedInstanceState)
         val viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getEvent()
         viewModel.event.observe(this, Observer { event ->
             event?.let {
                 val eventArray = it as ArrayList<Event>
