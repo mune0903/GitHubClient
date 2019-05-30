@@ -6,23 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.github.mune0903.githubclient.OAUTH_URL
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.databinding.FragmentLoginBinding
-import com.github.mune0903.githubclient.util.factory.ViewModelFactory
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
 
-    private lateinit var viewModel: LoginViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModelFactory = ViewModelFactory()
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
     }
 
     override fun onCreateView(
