@@ -16,8 +16,7 @@
         <activity android:name=".ui.MainActivity">
         </activity>
 
-        <activity android:name=".ui.oauth.OAuthActivity"
-                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".ui.oauth.OAuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
