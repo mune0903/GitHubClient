@@ -7,6 +7,7 @@ import com.github.mune0903.githubclient.data.remote.BASE_URL
 import com.github.mune0903.githubclient.data.repository.GitHubRepository
 import com.github.mune0903.githubclient.data.repository.GitHubRepositoryImpl
 import com.github.mune0903.githubclient.ui.MainViewModel
+import com.github.mune0903.githubclient.ui.oauth.OAuthViewModel
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -42,7 +43,9 @@ class ViewModelFactory : ViewModelProvider.Factory {
 
         val repository: GitHubRepository = GitHubRepositoryImpl(retrofit)
         if (modelClass == MainViewModel::class.java) {
-            return MainViewModel(repository) as T
+            return MainViewModel() as T
+        } else if (modelClass == OAuthViewModel::class.java) {
+            return OAuthViewModel() as  T
         }
         throw IllegalArgumentException("Unknown ViewModel class : ${modelClass.name}")
     }

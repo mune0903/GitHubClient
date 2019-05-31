@@ -1,4 +1,4 @@
-package com.github.mune0903.githubclient.ui.login
+package com.github.mune0903.githubclient.ui.oauth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.github.mune0903.githubclient.OAUTH_URL
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.databinding.FragmentLoginBinding
 
-class LoginFragment : Fragment() {
+class OAuthFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
 
@@ -35,6 +35,7 @@ class LoginFragment : Fragment() {
 
     private fun setupWebView() {
         binding.webView.apply {
+            // セキュリティ的にWebViewはマズイらしい
             webViewClient = WebViewClient()
             loadUrl(OAUTH_URL)
         }
@@ -42,9 +43,9 @@ class LoginFragment : Fragment() {
 
     companion object {
 
-        val TAG: String = LoginFragment::class.java.simpleName
+        val TAG: String = OAuthFragment::class.java.simpleName
 
         @JvmStatic
-        fun newInstance() = LoginFragment()
+        fun newInstance() = OAuthFragment()
     }
 }

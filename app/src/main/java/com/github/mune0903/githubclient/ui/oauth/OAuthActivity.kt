@@ -1,11 +1,10 @@
-package com.github.mune0903.githubclient.ui.login
+package com.github.mune0903.githubclient.ui.oauth
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mune0903.githubclient.R
 
-class LoginActivity : AppCompatActivity() {
+class OAuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -13,7 +12,7 @@ class LoginActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, LoginFragment.newInstance(), LoginFragment.TAG)
+            .replace(R.id.fragment_container, OAuthFragment.newInstance(), OAuthFragment.TAG)
             .commit()
     }
 }
