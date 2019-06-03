@@ -1,5 +1,6 @@
 package com.github.mune0903.githubclient.ui.oauth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mune0903.githubclient.R
