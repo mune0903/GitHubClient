@@ -12,6 +12,7 @@ object Libs {
         val lifecycle = "2.0.0"
         val recyclerView = "22.1.0"
         val glide = "4.9.0"
+        val navigation = "2.1.0-alpha04"
     }
 
     val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
@@ -32,4 +33,7 @@ object Libs {
     val recyclerView = "com.android.support:recyclerview-v7:${Versions.recyclerView}"
     val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     val glideAnnotation = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    val navigationGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
 }
