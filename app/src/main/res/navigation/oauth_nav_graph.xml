@@ -7,12 +7,12 @@
     <fragment
             android:id="@+id/fragment_oauth"
             android:name="com.github.mune0903.githubclient.ui.oauth.OAuthFragment">
-        <!--<action-->
-                <!--android:id="@+id/refresh"-->
-                <!--app:destination="@id/fragment_oauth"-->
-                <!--app:launchSingleTop="true"-->
-                <!--app:popUpTo="@+id/oauth_nav_graph"-->
-                <!--app:popUpToInclusive="true" />-->
+        <action
+                android:id="@+id/refresh"
+                app:destination="@id/fragment_oauth"
+                app:launchSingleTop="true"
+                app:popUpTo="@+id/oauth_nav_graph"
+                app:popUpToInclusive="true" />
         <argument
                 android:name="code"
                 android:defaultValue="@null"

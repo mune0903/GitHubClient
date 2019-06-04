@@ -45,7 +45,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
         if (modelClass == MainViewModel::class.java) {
             return MainViewModel() as T
         } else if (modelClass == OAuthViewModel::class.java) {
-            return OAuthViewModel() as  T
+            return OAuthViewModel(repository) as  T
         }
         throw IllegalArgumentException("Unknown ViewModel class : ${modelClass.name}")
     }
