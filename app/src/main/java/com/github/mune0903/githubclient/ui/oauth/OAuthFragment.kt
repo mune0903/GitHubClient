@@ -8,18 +8,30 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.github.mune0903.githubclient.OAUTH_URL
+import com.github.mune0903.githubclient.ui.MainActivity
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
 
 class OAuthFragment : Fragment() {
 
-    private lateinit var viewModel: OAuthViewModel
+    private val viewModelFactory = ViewModelFactory()
+
+    private val viewModel: OAuthViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(OAuthViewModel::class.java)
+    }
 
     private val args: OAuthFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModelFactory = ViewModelFactory()
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(OAuthViewModel::class.java)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (viewModel.isLoggedIn()) {
+            transitToMain()
+            return
+        }
+
         args.code?.let { code ->
             viewModel.getToken(code)
         } ?: run {
@@ -28,8 +40,10 @@ class OAuthFragment : Fragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    private fun transitToMain() {
+        val intent = MainActivity.createIntent(requireActivity())
+        startActivity(intent)
+        requireActivity().finish()
     }
+
 }

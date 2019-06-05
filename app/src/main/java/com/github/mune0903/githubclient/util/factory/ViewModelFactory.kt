@@ -1,5 +1,6 @@
 package com.github.mune0903.githubclient.util.factory
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -9,6 +10,7 @@ import com.github.mune0903.githubclient.data.repository.GitHubRepositoryImpl
 import com.github.mune0903.githubclient.ui.MainViewModel
 import com.github.mune0903.githubclient.ui.oauth.OAuthViewModel
 import com.squareup.moshi.Moshi
+import io.reactivex.schedulers.Schedulers.single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

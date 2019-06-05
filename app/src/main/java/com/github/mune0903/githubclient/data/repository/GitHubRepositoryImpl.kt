@@ -1,5 +1,6 @@
 package com.github.mune0903.githubclient.data.repository
 
+import android.content.Context
 import com.github.mune0903.githubclient.data.remote.client.GitHubClient
 import com.github.mune0903.githubclient.data.remote.model.Event
 import com.github.mune0903.githubclient.data.remote.model.Token
@@ -8,10 +9,23 @@ import io.reactivex.Observable
 import retrofit2.Retrofit
 
 class GitHubRepositoryImpl(
+    context: Context,
     private val retrofit: Retrofit
 ) : GitHubRepository {
 
+    private val preferenceKey = "githubclient"
+
+    private val tokenKey = "token"
+
     private val client by lazy { retrofit.create(GitHubClient::class.java) }
+
+    private val sharedPreferences = context.getSharedPreferences(preferenceKey, Context.MODE_PRIVATE)
+
+    override fun isLoggedIn(): Boolean {
+        sharedPreferences.getString(tokenKey, "").let {
+            return !it.isNullOrEmpty()
+        }
+    }
 
     override fun getToken(clientId: String, clientSecret: String, code: String): Observable<Token> {
         val request = mapOf(

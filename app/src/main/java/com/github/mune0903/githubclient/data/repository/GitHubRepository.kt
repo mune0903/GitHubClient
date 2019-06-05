@@ -5,6 +5,8 @@ import com.github.mune0903.githubclient.data.remote.model.Token
 import io.reactivex.Observable
 
 interface GitHubRepository {
+    fun isLoggedIn(): Boolean
+
     fun getToken(clientId: String, clientSecret: String, code: String):  Observable<Token>
 
     fun getEventList(): Observable<List<Event>>
