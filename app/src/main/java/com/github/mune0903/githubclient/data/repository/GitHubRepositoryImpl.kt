@@ -39,7 +39,7 @@ class GitHubRepositoryImpl(
     }
 
     override fun saveToken(token: String) {
-        return sharedPreferences.edit {
+        sharedPreferences.edit {
             putString(tokenKey, token)
         }
     }

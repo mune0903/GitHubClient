@@ -3,16 +3,13 @@ package com.github.mune0903.githubclient.ui.oauth
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.github.mune0903.githubclient.OAUTH_URL
-import com.github.mune0903.githubclient.data.remote.model.Token
 import com.github.mune0903.githubclient.ui.MainActivity
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
-import timber.log.Timber
 
 class OAuthFragment : Fragment() {
 
