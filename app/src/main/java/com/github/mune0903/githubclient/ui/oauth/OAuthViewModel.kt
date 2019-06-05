@@ -19,7 +19,7 @@ class OAuthViewModel(
     private val disposable = CompositeDisposable()
 
     private val _token = MutableLiveData<Token>()
-    val taken: LiveData<Token> = _token
+    val token: LiveData<Token> = _token
 
     fun isLoggedIn(): Boolean {
         return gitHubRepository.isLoggedIn()

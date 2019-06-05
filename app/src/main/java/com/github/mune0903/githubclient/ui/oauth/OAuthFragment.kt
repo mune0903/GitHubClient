@@ -27,11 +27,13 @@ class OAuthFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.taken.observe(this, Observer { token ->
-            token?.let {
-                viewModel.saveToken(it.access_token)
-            }
-        })
+        viewModel.apply {
+            token.observe(this@OAuthFragment, Observer { accessToken ->
+                accessToken?.let {
+                    saveToken(it.access_token)
+                }
+            })
+        }
 
         if (viewModel.isLoggedIn()) {
             transitToMain()
