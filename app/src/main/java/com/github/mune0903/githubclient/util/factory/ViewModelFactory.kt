@@ -10,14 +10,13 @@ import com.github.mune0903.githubclient.data.repository.GitHubRepositoryImpl
 import com.github.mune0903.githubclient.ui.MainViewModel
 import com.github.mune0903.githubclient.ui.oauth.OAuthViewModel
 import com.squareup.moshi.Moshi
-import io.reactivex.schedulers.Schedulers.single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-class ViewModelFactory : ViewModelProvider.Factory {
+class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 
     private fun createRetrofit(): Retrofit {
         val okHttp = OkHttpClient()
@@ -43,7 +42,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
 
         val retrofit = createRetrofit()
 
-        val repository: GitHubRepository = GitHubRepositoryImpl(retrofit)
+        val repository: GitHubRepository = GitHubRepositoryImpl(retrofit, context)
         if (modelClass == MainViewModel::class.java) {
             return MainViewModel() as T
         } else if (modelClass == OAuthViewModel::class.java) {

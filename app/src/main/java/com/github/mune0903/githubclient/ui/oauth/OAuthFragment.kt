@@ -5,15 +5,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.github.mune0903.githubclient.OAUTH_URL
+import com.github.mune0903.githubclient.data.remote.model.Token
 import com.github.mune0903.githubclient.ui.MainActivity
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
 
 class OAuthFragment : Fragment() {
 
-    private val viewModelFactory = ViewModelFactory()
+    private val viewModelFactory: ViewModelFactory by lazy {
+        ViewModelFactory(requireContext())
+    }
 
     private val viewModel: OAuthViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(OAuthViewModel::class.java)
@@ -23,10 +27,12 @@ class OAuthFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
+        viewModel.taken.observe(this, Observer { token ->
+            token?.let {
+                viewModel.saveToken(it.access_token)
+            }
+        })
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         if (viewModel.isLoggedIn()) {
             transitToMain()
             return
@@ -40,10 +46,13 @@ class OAuthFragment : Fragment() {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     private fun transitToMain() {
         val intent = MainActivity.createIntent(requireActivity())
         startActivity(intent)
         requireActivity().finish()
     }
-
 }

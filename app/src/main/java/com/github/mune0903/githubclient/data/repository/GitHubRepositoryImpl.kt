@@ -1,16 +1,18 @@
 package com.github.mune0903.githubclient.data.repository
 
 import android.content.Context
+import androidx.core.content.edit
 import com.github.mune0903.githubclient.data.remote.client.GitHubClient
 import com.github.mune0903.githubclient.data.remote.model.Event
 import com.github.mune0903.githubclient.data.remote.model.Token
 import com.github.mune0903.githubclient.util.extension.observeOnMainThread
+import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.Retrofit
 
 class GitHubRepositoryImpl(
-    context: Context,
-    private val retrofit: Retrofit
+    private val retrofit: Retrofit,
+    private val context: Context
 ) : GitHubRepository {
 
     private val preferenceKey = "githubclient"
@@ -35,6 +37,15 @@ class GitHubRepositoryImpl(
         )
         return client.getToken("application/json", request)
             .observeOnMainThread()
+    }
+
+    override fun saveToken(token: String): Completable {
+        return Completable.create { emitter ->
+            sharedPreferences.edit {
+                putString(tokenKey, token)
+            }
+            emitter.onComplete()
+        }
     }
 
     override fun getEventList(): Observable<List<Event>> {
