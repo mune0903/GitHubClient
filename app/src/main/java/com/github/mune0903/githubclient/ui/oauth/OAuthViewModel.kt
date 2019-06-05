@@ -37,7 +37,6 @@ class OAuthViewModel(
 
     fun saveToken(token: String) {
         gitHubRepository.saveToken(token)
-            .subscribe()
     }
 
     override fun onCleared() {

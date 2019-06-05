@@ -28,16 +28,15 @@ class OAuthFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.d("here")
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Timber.d("here")
+    override fun onStart() {
+        super.onStart()
         viewModel.apply {
             token.observe(this@OAuthFragment, Observer { accessToken ->
                 accessToken?.let {
                     saveToken(it.access_token)
+                    transitToMain()
                 }
             })
         }

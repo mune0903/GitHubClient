@@ -10,7 +10,7 @@ interface GitHubRepository {
 
     fun getToken(clientId: String, clientSecret: String, code: String):  Observable<Token>
 
-    fun saveToken(token: String): Completable
+    fun saveToken(token: String)
 
     fun getEventList(): Observable<List<Event>>
 }
