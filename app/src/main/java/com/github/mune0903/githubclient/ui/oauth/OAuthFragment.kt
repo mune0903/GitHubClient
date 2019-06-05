@@ -12,6 +12,7 @@ import com.github.mune0903.githubclient.OAUTH_URL
 import com.github.mune0903.githubclient.data.remote.model.Token
 import com.github.mune0903.githubclient.ui.MainActivity
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
+import timber.log.Timber
 
 class OAuthFragment : Fragment() {
 
@@ -27,6 +28,12 @@ class OAuthFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.d("here")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Timber.d("here")
         viewModel.apply {
             token.observe(this@OAuthFragment, Observer { accessToken ->
                 accessToken?.let {
@@ -46,10 +53,6 @@ class OAuthFragment : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(OAUTH_URL))
             startActivity(intent)
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun transitToMain() {
