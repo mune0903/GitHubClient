@@ -11,5 +11,5 @@ interface GitHubRepository {
 
     fun saveToken(token: String)
 
-    fun getNews(token: String): Observable<List<News>>
+    fun getNews(userName: String): Observable<List<News>>
 }

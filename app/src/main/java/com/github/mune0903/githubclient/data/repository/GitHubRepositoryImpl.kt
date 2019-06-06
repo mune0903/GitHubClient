@@ -3,6 +3,7 @@ package com.github.mune0903.githubclient.data.repository
 import android.content.Context
 import androidx.core.content.edit
 import com.github.mune0903.githubclient.data.remote.client.GitHubClient
+import com.github.mune0903.githubclient.data.remote.model.News
 import com.github.mune0903.githubclient.data.remote.model.Token
 import com.github.mune0903.githubclient.util.extension.observeOnMainThread
 import io.reactivex.Observable
@@ -46,9 +47,9 @@ class GitHubRepositoryImpl(
         }
     }
 
-
-    override fun getEventList(): Observable<List<Event>> {
-        return clientAPI.get()
+    override fun getNews(userName: String): Observable<List<News>> {
+        val token = sharedPreferences.getString(tokenKey, "") ?: ""
+        return clientAPI.getNews(token, userName)
             .observeOnMainThread()
     }
 }
