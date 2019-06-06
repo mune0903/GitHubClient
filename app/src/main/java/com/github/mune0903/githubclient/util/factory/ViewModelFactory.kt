@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.github.mune0903.githubclient.data.remote.BASE_URL
+import com.github.mune0903.githubclient.data.remote.BASE_API_URL
+import com.github.mune0903.githubclient.data.remote.BASE_OAUTH_URL
 import com.github.mune0903.githubclient.data.repository.GitHubRepository
 import com.github.mune0903.githubclient.data.repository.GitHubRepositoryImpl
 import com.github.mune0903.githubclient.ui.MainViewModel
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit
 
 class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 
-    private fun createRetrofit(): Retrofit {
+    private fun createRetrofitOAuth(): Retrofit {
         val okHttp = OkHttpClient()
             .newBuilder()
             .connectTimeout(15, TimeUnit.SECONDS)
@@ -33,16 +34,37 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
             .client(okHttp)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(BASE_OAUTH_URL)
+            .build()
+    }
+
+    private fun createRetrofitAPI(): Retrofit {
+        val okHttp = OkHttpClient()
+            .newBuilder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .addNetworkInterceptor(StethoInterceptor())
+            .build()
+
+        val moshi = Moshi.Builder().build()
+
+        return Retrofit.Builder()
+            .client(okHttp)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .baseUrl(BASE_API_URL)
             .build()
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
-        val retrofit = createRetrofit()
+        val retrofitOAuth = createRetrofitOAuth()
+        val retrofitAPI = createRetrofitAPI()
 
-        val repository: GitHubRepository = GitHubRepositoryImpl(retrofit, context)
+        val repository: GitHubRepository = GitHubRepositoryImpl(retrofitOAuth, retrofitAPI, context)
+
         if (modelClass == MainViewModel::class.java) {
             return MainViewModel() as T
         } else if (modelClass == OAuthViewModel::class.java) {

@@ -3,14 +3,14 @@ package com.github.mune0903.githubclient.data.repository
 import android.content.Context
 import androidx.core.content.edit
 import com.github.mune0903.githubclient.data.remote.client.GitHubClient
-import com.github.mune0903.githubclient.data.remote.model.Event
 import com.github.mune0903.githubclient.data.remote.model.Token
 import com.github.mune0903.githubclient.util.extension.observeOnMainThread
 import io.reactivex.Observable
 import retrofit2.Retrofit
 
 class GitHubRepositoryImpl(
-    private val retrofit: Retrofit,
+    private val retrofitOAuth: Retrofit,
+    private val retrofitAPI: Retrofit,
     private val context: Context
 ) : GitHubRepository {
 
@@ -18,7 +18,9 @@ class GitHubRepositoryImpl(
 
     private val tokenKey = "token"
 
-    private val client by lazy { retrofit.create(GitHubClient::class.java) }
+    private val clientOAuth by lazy { retrofitOAuth.create(GitHubClient::class.java) }
+
+    private val clientAPI by lazy { retrofitAPI.create(GitHubClient::class.java) }
 
     private val sharedPreferences = context.getSharedPreferences(preferenceKey, Context.MODE_PRIVATE)
 
@@ -34,7 +36,7 @@ class GitHubRepositoryImpl(
             "client_secret" to clientSecret,
             "code" to code
         )
-        return client.getToken("application/json", request)
+        return clientOAuth.getToken("application/json", request)
             .observeOnMainThread()
     }
 
@@ -46,7 +48,7 @@ class GitHubRepositoryImpl(
 
 
     override fun getEventList(): Observable<List<Event>> {
-        return client.get()
+        return clientAPI.get()
             .observeOnMainThread()
     }
 }
