@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.github.mune0903.githubclient.OAUTH_URL
 import com.github.mune0903.githubclient.ui.MainActivity
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
+import timber.log.Timber
 
 class OAuthFragment : Fragment() {
 
@@ -33,6 +34,7 @@ class OAuthFragment : Fragment() {
             token.observe(this@OAuthFragment, Observer { accessToken ->
                 accessToken?.let {
                     saveToken(it.access_token)
+                    Timber.d(it.access_token)
                     transitToMain()
                 }
             })

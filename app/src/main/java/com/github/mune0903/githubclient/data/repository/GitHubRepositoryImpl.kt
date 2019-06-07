@@ -48,8 +48,8 @@ class GitHubRepositoryImpl(
     }
 
     override fun getNews(userName: String): Observable<List<News>> {
-        val token = sharedPreferences.getString(tokenKey, "") ?: ""
-        return clientAPI.getNews(token, userName)
+        val token = sharedPreferences.getString(tokenKey, "")
+        return clientAPI.getNews("token $token", userName)
             .observeOnMainThread()
     }
 }

@@ -66,7 +66,7 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
         val repository: GitHubRepository = GitHubRepositoryImpl(retrofitOAuth, retrofitAPI, context)
 
         if (modelClass == MainViewModel::class.java) {
-            return MainViewModel() as T
+            return MainViewModel(repository) as T
         } else if (modelClass == OAuthViewModel::class.java) {
             return OAuthViewModel(repository) as  T
         }
