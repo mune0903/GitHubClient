@@ -9,6 +9,7 @@ import com.github.mune0903.githubclient.data.remote.BASE_OAUTH_URL
 import com.github.mune0903.githubclient.data.repository.GitHubRepository
 import com.github.mune0903.githubclient.data.repository.GitHubRepositoryImpl
 import com.github.mune0903.githubclient.ui.MainViewModel
+import com.github.mune0903.githubclient.ui.news.NewsViewModel
 import com.github.mune0903.githubclient.ui.oauth.OAuthViewModel
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
@@ -69,6 +70,8 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
             return MainViewModel(repository) as T
         } else if (modelClass == OAuthViewModel::class.java) {
             return OAuthViewModel(repository) as  T
+        } else if (modelClass == NewsViewModel::class.java) {
+            return NewsViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class : ${modelClass.name}")
     }

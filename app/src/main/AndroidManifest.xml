@@ -37,6 +37,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.news.NewsActivity">
+        </activity>
+
     </application>
 
 </manifest>

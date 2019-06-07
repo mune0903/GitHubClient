@@ -1,4 +1,4 @@
-package com.github.mune0903.githubclient.ui
+package com.github.mune0903.githubclient.ui.news.item
 
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.data.remote.model.News

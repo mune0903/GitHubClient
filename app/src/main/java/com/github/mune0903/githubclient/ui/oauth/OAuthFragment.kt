@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.github.mune0903.githubclient.OAUTH_URL
 import com.github.mune0903.githubclient.ui.MainActivity
+import com.github.mune0903.githubclient.ui.news.NewsActivity
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
 import timber.log.Timber
 
@@ -54,7 +55,7 @@ class OAuthFragment : Fragment() {
     }
 
     private fun transitToMain() {
-        val intent = MainActivity.createIntent(requireActivity())
+        val intent = NewsActivity.createIntent(requireActivity())
         startActivity(intent)
         requireActivity().finish()
     }

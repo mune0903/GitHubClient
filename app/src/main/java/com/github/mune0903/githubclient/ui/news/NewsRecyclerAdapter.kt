@@ -1,4 +1,4 @@
-package com.github.mune0903.githubclient.ui
+package com.github.mune0903.githubclient.ui.news
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
