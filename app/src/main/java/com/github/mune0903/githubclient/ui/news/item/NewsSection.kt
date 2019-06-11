@@ -5,9 +5,9 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.Section
 
 class NewsSection : Section() {
-    fun updateNews(staffList: List<News>) {
+    fun updateNews(newsList: List<News>) {
         val list = mutableListOf<Item<*>>()
-        staffList.mapTo(list) {
+        newsList.mapTo(list) {
             NewsItem(it)
         }
         update(list)
