@@ -10,12 +10,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.github.mune0903.githubclient.R
+import com.github.mune0903.githubclient.data.remote.model.News
 import com.github.mune0903.githubclient.databinding.FragmentNewsBinding
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 
-class NewsFragment : Fragment(), NewsRecyclerAdapter.OnItemClickListener {
+class NewsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsBinding
 
@@ -27,17 +28,17 @@ class NewsFragment : Fragment(), NewsRecyclerAdapter.OnItemClickListener {
         ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
     }
 
-    private val adapter = NewsRecyclerAdapter(this)
+    private val controller = NewsItemController()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel.getNewsList("mune0903")
-
-        viewModel.news.observe(this, Observer { news ->
-
-            binding.swipeRefresh.isRefreshing = false
-        })
+        viewModel.apply {
+            getNewsList("mune0903")
+            news.observe(this@NewsFragment, Observer {
+                controller.setData(NewsItemController(it))
+                binding.swipeRefresh.isRefreshing = false
+            })
+        }
     }
 
     override fun onCreateView(
@@ -54,7 +55,7 @@ class NewsFragment : Fragment(), NewsRecyclerAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.swipeRefresh.isRefreshing = true
-        setupRecyclerView2()
+        setupRecyclerView()
         setupSwipeRefresh()
     }
 
@@ -62,22 +63,14 @@ class NewsFragment : Fragment(), NewsRecyclerAdapter.OnItemClickListener {
         binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = this@NewsFragment.adapter
+            adapter = controller.adapter
         }
-    }
-
-    private fun setupRecyclerView2() {
-
     }
 
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.getNewsList("mune0903")
         }
-    }
-
-    override fun onItemClick() {
-
     }
 
     companion object {
