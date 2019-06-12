@@ -13,6 +13,7 @@ object Libs {
         val recyclerView = "22.1.0"
         val glide = "4.9.0"
         val navigation = "2.1.0-alpha04"
+        val epoxy = "3.5.1"
     }
 
     val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
@@ -36,4 +37,7 @@ object Libs {
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     val navigationGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
+    val epoxy = "com.airbnb.android:epoxy:${Versions.epoxy}"
+    val epoxyDataBinding = "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"
+    val epoxyProcessor = "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
 }

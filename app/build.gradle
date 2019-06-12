@@ -35,6 +35,9 @@ android {
         disable 'GoogleAppIndexingWarning'
         baseline file("app/src/main/AndroidManifest.xml")
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -68,4 +71,7 @@ dependencies {
     annotationProcessor Libs.glideAnnotation
     implementation Libs.navigationFragment
     implementation Libs.navigationUi
+    implementation Libs.epoxy
+    implementation Libs.epoxyDataBinding
+    kapt Libs.epoxyProcessor
 }
