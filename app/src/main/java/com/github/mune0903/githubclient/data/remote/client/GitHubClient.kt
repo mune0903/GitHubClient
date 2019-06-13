@@ -24,5 +24,5 @@ interface GitHubClient {
     @GET(URL_GET_USER)
     fun getUser(
         @Header(TOKEN_HEADER) header: String
-    ): Observable<List<User>>
+    ): Observable<User>
 }

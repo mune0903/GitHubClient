@@ -14,5 +14,5 @@ interface GitHubRepository {
 
     fun getNews(userName: String): Observable<List<News>>
 
-    fun getUser(): Observable<List<User>>
+    fun getUser(): Observable<User>
 }

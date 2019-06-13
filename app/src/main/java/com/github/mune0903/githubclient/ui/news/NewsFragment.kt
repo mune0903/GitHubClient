@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.data.remote.model.News
+import com.github.mune0903.githubclient.data.remote.model.User
 import com.github.mune0903.githubclient.databinding.FragmentNewsBinding
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
 import com.xwray.groupie.GroupAdapter
@@ -33,7 +34,10 @@ class NewsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.apply {
-            getNewsList("mune0903")
+            getUser()
+            user.observe(this@NewsFragment, Observer {
+                getNewsList(it.login.toString())
+            })
             news.observe(this@NewsFragment, Observer {
                 controller.setData(NewsItemController(it))
                 binding.swipeRefresh.isRefreshing = false

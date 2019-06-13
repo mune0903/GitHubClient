@@ -55,7 +55,7 @@ class GitHubRepositoryImpl(
             .observeOnMainThread()
     }
 
-    override fun getUser(): Observable<List<User>> {
+    override fun getUser(): Observable<User> {
         return clientAPI.getUser("token $token")
             .observeOnMainThread()
     }
