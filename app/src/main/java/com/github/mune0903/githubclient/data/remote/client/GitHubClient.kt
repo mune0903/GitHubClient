@@ -1,11 +1,9 @@
 package com.github.mune0903.githubclient.data.remote.client
 
-import com.github.mune0903.githubclient.data.remote.ACCEPT_HEADER
-import com.github.mune0903.githubclient.data.remote.NEWS
-import com.github.mune0903.githubclient.data.remote.TOKEN_HEADER
-import com.github.mune0903.githubclient.data.remote.URL_GET_TOKEN
+import com.github.mune0903.githubclient.data.remote.*
 import com.github.mune0903.githubclient.data.remote.model.News
 import com.github.mune0903.githubclient.data.remote.model.Token
+import com.github.mune0903.githubclient.data.remote.model.User
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -17,9 +15,14 @@ interface GitHubClient {
         @FieldMap body: Map<String, String>
     ): Observable<Token>
 
-    @GET(NEWS)
+    @GET(URL_GET_NEWS)
     fun getNews(
         @Header(TOKEN_HEADER) header: String,
         @Path("user_name") userName: String
     ): Observable<List<News>>
+
+    @GET(URL_GET_USER)
+    fun getUser(
+        @Header(TOKEN_HEADER) header: String
+    ): Observable<List<User>>
 }
