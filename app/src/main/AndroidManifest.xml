@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.github.mune0903.githubclient">
-    <!-- ネット接続するためのパーミッション 必要だけど忘れがち -->
+
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -13,7 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
@@ -35,9 +36,6 @@
                         android:host="callback"
                         android:scheme="githubclient"/>
             </intent-filter>
-        </activity>
-
-        <activity android:name=".ui.news.NewsActivity">
         </activity>
 
     </application>

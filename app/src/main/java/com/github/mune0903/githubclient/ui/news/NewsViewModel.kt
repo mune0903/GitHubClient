@@ -20,24 +20,11 @@ class NewsViewModel(
     private val _news = MutableLiveData<List<News>>()
     val news: LiveData<List<News>> = _news
 
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User> = _user
-
     fun getNewsList(userName: String) {
         gitHubRepository.getNews(userName)
             .observeOnMainThread()
             .subscribe({
                 _news.value = it
-            }, {
-                Timber.e(it)
-            }).addTo(disposable)
-    }
-
-    fun getUser() {
-        gitHubRepository.getUser()
-            .observeOnMainThread()
-            .subscribe({
-                _user.value = it
             }, {
                 Timber.e(it)
             }).addTo(disposable)

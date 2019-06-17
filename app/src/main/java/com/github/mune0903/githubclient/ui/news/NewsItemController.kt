@@ -8,13 +8,14 @@ data class NewsItemController(
     val newsList: List<News> = emptyList()
 ) : TypedEpoxyController<NewsItemController>() {
 
-    override fun buildModels(data: NewsItemController) {
+    override fun buildModels(data: NewsItemController?) {
+        data ?: return
+
         data.newsList.forEach {
             ItemNewsBindingModel_()
                 .news(it)
-                .id(modelCountBuiltSoFar)
+                .id(it.id)
                 .addTo(this)
         }
     }
-
 }

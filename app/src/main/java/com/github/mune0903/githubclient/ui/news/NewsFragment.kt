@@ -13,6 +13,7 @@ import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.data.remote.model.News
 import com.github.mune0903.githubclient.data.remote.model.User
 import com.github.mune0903.githubclient.databinding.FragmentNewsBinding
+import com.github.mune0903.githubclient.ui.MainViewModel
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -25,6 +26,10 @@ class NewsFragment : Fragment() {
         ViewModelFactory(requireContext())
     }
 
+    private val mainViewModel: MainViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+    }
+
     private val viewModel: NewsViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
     }
@@ -33,11 +38,14 @@ class NewsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.apply {
+        mainViewModel.apply {
             getUser()
             user.observe(this@NewsFragment, Observer {
-                getNewsList(it.login.toString())
+                viewModel.getNewsList(it.login.toString())
             })
+        }
+
+        viewModel.apply {
             news.observe(this@NewsFragment, Observer {
                 controller.setData(NewsItemController(it))
                 binding.swipeRefresh.isRefreshing = false
@@ -73,7 +81,11 @@ class NewsFragment : Fragment() {
 
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getNewsList("mune0903")
+            mainViewModel.apply {
+                user.observe(this@NewsFragment, Observer {
+                    viewModel.getNewsList(it.login.toString())
+                })
+            }
         }
     }
 

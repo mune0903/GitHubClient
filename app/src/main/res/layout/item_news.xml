@@ -3,11 +3,9 @@
         xmlns:tools="http://schemas.android.com/tools" android:id="@+id/layout">
 
     <data>
-
         <variable
                 name="news"
                 type="com.github.mune0903.githubclient.data.remote.model.News"/>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
