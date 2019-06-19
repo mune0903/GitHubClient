@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.ui.news.NewsFragment
@@ -11,9 +12,18 @@ import com.github.mune0903.githubclient.util.factory.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
+    private val viewModelFactory: ViewModelFactory by lazy {
+        ViewModelFactory(this)
+    }
+
+    private val mainViewModel: MainViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainViewModel
 
         // Fragmentをセット
         supportFragmentManager

@@ -38,6 +38,9 @@ android {
     kapt {
         correctErrorTypes = true
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -74,4 +77,7 @@ dependencies {
     implementation Libs.epoxy
     implementation Libs.epoxyDataBinding
     kapt Libs.epoxyProcessor
+    implementation Libs.koinAndroid
+    implementation Libs.koinAndroidScope
+    implementation Libs.koinViewModel
 }

@@ -8,17 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.github.mune0903.githubclient.R
-import com.github.mune0903.githubclient.data.remote.model.News
-import com.github.mune0903.githubclient.data.remote.model.User
 import com.github.mune0903.githubclient.databinding.FragmentNewsBinding
 import com.github.mune0903.githubclient.ui.MainViewModel
 import com.github.mune0903.githubclient.util.factory.ViewModelFactory
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
 
 class NewsFragment : Fragment() {
+
 
     private lateinit var binding: FragmentNewsBinding
 
@@ -27,7 +23,7 @@ class NewsFragment : Fragment() {
     }
 
     private val mainViewModel: MainViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+        ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
     }
 
     private val viewModel: NewsViewModel by lazy {

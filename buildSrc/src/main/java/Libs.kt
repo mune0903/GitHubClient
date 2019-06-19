@@ -14,6 +14,7 @@ object Libs {
         val glide = "4.9.0"
         val navigation = "2.1.0-alpha04"
         val epoxy = "3.5.1"
+        val koin = "2.0.1"
     }
 
     val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
@@ -40,4 +41,7 @@ object Libs {
     val epoxy = "com.airbnb.android:epoxy:${Versions.epoxy}"
     val epoxyDataBinding = "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"
     val epoxyProcessor = "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
+    val koinAndroid = "org.koin:koin-android:${Versions.koin}"
+    val koinAndroidScope = "org.koin:koin-android-scope:${Versions.koin}"
+    val koinViewModel = "org.koin:koin-android-viewmodel:${Versions.koin}"
 }
