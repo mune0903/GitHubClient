@@ -42,6 +42,6 @@ object Libs {
     val epoxyDataBinding = "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"
     val epoxyProcessor = "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
     val koinAndroid = "org.koin:koin-android:${Versions.koin}"
-    val koinAndroidScope = "org.koin:koin-android-scope:${Versions.koin}"
-    val koinViewModel = "org.koin:koin-android-viewmodel:${Versions.koin}"
+    val koinAndroidScope = "org.koin:koin-androidx-scope:${Versions.koin}"
+    val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 }

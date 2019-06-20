@@ -1,7 +1,7 @@
 package com.github.mune0903.githubclient.di
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.github.mune0903.githubclient.data.remote.BASE_API_URL
+import com.github.mune0903.githubclient.data.remote.BASE_OAUTH_URL
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -10,7 +10,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-val apiModule = module {
+val oauthModule = module {
     single {
         OkHttpClient()
             .newBuilder()
@@ -25,12 +25,12 @@ val apiModule = module {
         Moshi.Builder().build()
     }
 
-    factory {
+    single {
         Retrofit.Builder()
             .client(get())
             .addConverterFactory(MoshiConverterFactory.create(get()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl(BASE_API_URL)
+            .baseUrl(BASE_OAUTH_URL)
             .build()
     }
 }
