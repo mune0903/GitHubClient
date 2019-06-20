@@ -3,16 +3,15 @@ package com.github.mune0903.githubclient.ui.news
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.mune0903.githubclient.data.remote.model.News
-import com.github.mune0903.githubclient.data.remote.model.User
-import com.github.mune0903.githubclient.data.repository.GitHubRepository
+import com.github.mune0903.githubclient.data.model.News
+import com.github.mune0903.githubclient.data.remote.github.GitHubRepository
 import com.github.mune0903.githubclient.util.extension.observeOnMainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 
 class NewsViewModel(
-    private val gitHubRepository: GitHubRepository
+    private val githubRepository: GitHubRepository
 ) : ViewModel() {
 
     private val disposable = CompositeDisposable()
@@ -21,7 +20,7 @@ class NewsViewModel(
     val news: LiveData<List<News>> = _news
 
     fun getNewsList(userName: String) {
-        gitHubRepository.getNews(userName)
+        githubRepository.getNews(userName)
             .observeOnMainThread()
             .subscribe({
                 _news.value = it

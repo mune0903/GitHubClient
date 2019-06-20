@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.github.mune0903.githubclient.data.remote.BASE_API_URL
 import com.github.mune0903.githubclient.data.remote.BASE_OAUTH_URL
-import com.github.mune0903.githubclient.data.repository.GitHubRepository
-import com.github.mune0903.githubclient.data.repository.GitHubRepositoryImpl
+import com.github.mune0903.githubclient.data.remote.github.GitHubRepository
+import com.github.mune0903.githubclient.data.remote.github.GitHubRepositoryImpl
+import com.github.mune0903.githubclient.data.remote.oauth.OAuthRepository
+import com.github.mune0903.githubclient.data.remote.oauth.OAuthRepositoryImpl
 import com.github.mune0903.githubclient.ui.MainViewModel
 import com.github.mune0903.githubclient.ui.news.NewsViewModel
 import com.github.mune0903.githubclient.ui.oauth.OAuthViewModel
@@ -64,14 +66,15 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
         val retrofitOAuth = createRetrofitOAuth()
         val retrofitAPI = createRetrofitAPI()
 
-        val repository: GitHubRepository = GitHubRepositoryImpl(retrofitOAuth, retrofitAPI, context)
+        val oauthRepository: OAuthRepository = OAuthRepositoryImpl(retrofitOAuth, context)
+        val githubRepository: GitHubRepository = GitHubRepositoryImpl(retrofitAPI, context)
 
         if (modelClass == MainViewModel::class.java) {
-            return MainViewModel(repository) as T
+            return MainViewModel(githubRepository) as T
         } else if (modelClass == OAuthViewModel::class.java) {
-            return OAuthViewModel(repository) as  T
+            return OAuthViewModel(oauthRepository) as  T
         } else if (modelClass == NewsViewModel::class.java) {
-            return NewsViewModel(repository) as T
+            return NewsViewModel(githubRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class : ${modelClass.name}")
     }

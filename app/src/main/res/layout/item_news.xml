@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="news"
-                type="com.github.mune0903.githubclient.data.remote.model.News"/>
+                type="com.github.mune0903.githubclient.data.model.News"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

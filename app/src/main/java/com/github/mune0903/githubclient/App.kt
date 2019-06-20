@@ -15,10 +15,10 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin {
-            androidContext(this@App)
-            modules(listOf(appModule, apiModule, oauthModule))
-        }
+//        startKoin {
+//            androidContext(this@App)
+//            modules(listOf(appModule, apiModule, oauthModule))
+//        }
 
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this)

@@ -1,4 +1,4 @@
-package com.github.mune0903.githubclient.data.remote.model
+package com.github.mune0903.githubclient.data.model
 
 data class Token(
     val access_token: String,
