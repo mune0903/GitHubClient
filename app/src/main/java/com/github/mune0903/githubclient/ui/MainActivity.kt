@@ -4,20 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.ui.news.NewsFragment
-import com.github.mune0903.githubclient.util.factory.ViewModelFactory
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModelFactory: ViewModelFactory by lazy {
-        ViewModelFactory(this)
-    }
-
-    private val mainViewModel: MainViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
-    }
+    private val mainViewModel: MainViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

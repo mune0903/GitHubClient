@@ -6,29 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.databinding.FragmentNewsBinding
 import com.github.mune0903.githubclient.ui.MainViewModel
-import com.github.mune0903.githubclient.util.factory.ViewModelFactory
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsFragment : Fragment() {
 
 
     private lateinit var binding: FragmentNewsBinding
 
-    private val viewModelFactory: ViewModelFactory by lazy {
-        ViewModelFactory(requireContext())
-    }
-
-    private val mainViewModel: MainViewModel by lazy {
-        ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
-    }
-
-    private val viewModel: NewsViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
-    }
+    private val mainViewModel: MainViewModel by inject()
+    private val viewModel: NewsViewModel by inject()
 
     private val controller = NewsItemController()
 
