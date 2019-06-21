@@ -12,13 +12,11 @@ class GitHubRepositoryImpl(
     private val retrofit: Retrofit
 ) : GitHubRepository {
 
-    private val preferenceKey = "githubclient"
-
     private val tokenKey = "token"
 
     private val client by lazy { retrofit.create(GitHubClient::class.java) }
 
-    private val sharedPreferences = context.getSharedPreferences(preferenceKey, Context.MODE_PRIVATE)
+    private val sharedPreferences = context.getSharedPreferences(tokenKey, Context.MODE_PRIVATE)
 
     private val token = sharedPreferences.getString(tokenKey, "")
 

@@ -14,11 +14,9 @@ class OAuthRepositoryImpl(
 
     private val client by lazy { retrofit.create(OAuthClient::class.java) }
 
-    private val preferenceKey = "githubclient"
-
     private val tokenKey = "token"
 
-    private val sharedPreferences = context.getSharedPreferences(preferenceKey, Context.MODE_PRIVATE)
+    private val sharedPreferences = context.getSharedPreferences(tokenKey, Context.MODE_PRIVATE)
 
     override fun isLoggedIn(): Boolean {
         sharedPreferences.getString(tokenKey, "").let {

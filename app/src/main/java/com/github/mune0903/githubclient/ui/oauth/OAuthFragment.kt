@@ -18,17 +18,12 @@ class OAuthFragment : Fragment() {
 
     private val args: OAuthFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onStart() {
         super.onStart()
         viewModel.apply {
             token.observe(this@OAuthFragment, Observer { accessToken ->
                 accessToken?.let {
                     saveToken(it.access_token)
-                    Timber.d(it.access_token)
                     transitToMain()
                 }
             })
