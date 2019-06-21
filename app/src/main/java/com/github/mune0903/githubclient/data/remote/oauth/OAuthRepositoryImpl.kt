@@ -8,8 +8,8 @@ import io.reactivex.Observable
 import retrofit2.Retrofit
 
 class OAuthRepositoryImpl(
-    private val retrofit: Retrofit,
-    private val context: Context
+    private val context: Context,
+    private val retrofit: Retrofit
 ) : OAuthRepository {
 
     private val client by lazy { retrofit.create(OAuthClient::class.java) }

@@ -8,8 +8,8 @@ import io.reactivex.Observable
 import retrofit2.Retrofit
 
 class GitHubRepositoryImpl(
-    private val retrofit: Retrofit,
-    private val context: Context
+    private val context: Context,
+    private val retrofit: Retrofit
 ) : GitHubRepository {
 
     private val preferenceKey = "githubclient"
