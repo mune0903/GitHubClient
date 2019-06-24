@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit
 
 object Modules {
     val apiModule = module {
-        single {
+        factory {
             OkHttpClient()
                 .newBuilder()
                 .connectTimeout(15, TimeUnit.SECONDS)
@@ -31,7 +31,7 @@ object Modules {
                 .build()
         }
 
-        single {
+        factory {
             Moshi.Builder().build()
         }
 
@@ -55,8 +55,8 @@ object Modules {
     }
 
     val repositoryModule = module {
-        single<OAuthRepository> { OAuthRepositoryImpl(get(), get(named("oauth"))) }
-        single<GitHubRepository> { GitHubRepositoryImpl(get(), get(named("api"))) }
+        factory<OAuthRepository> { OAuthRepositoryImpl(get(), get(named("oauth"))) }
+        factory<GitHubRepository> { GitHubRepositoryImpl(get(), get(named("api"))) }
     }
 
     val viewModelModule = module {

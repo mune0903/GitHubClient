@@ -15,7 +15,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsFragment : Fragment() {
 
-
     private lateinit var binding: FragmentNewsBinding
 
     private val mainViewModel: MainViewModel by inject()
