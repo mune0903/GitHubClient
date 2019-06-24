@@ -44,8 +44,8 @@ android {
 }
 
 dependencies {
-    implementation project(":main")
-    implementation project(":oauth")
+    implementation project(":common")
+    implementation project(":data")
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -73,8 +73,6 @@ dependencies {
     implementation Libs.viewModel
     implementation Libs.lifecycle
     implementation Libs.recyclerView
-    implementation Libs.glide
-    annotationProcessor Libs.glideAnnotation
     implementation Libs.navigationFragment
     implementation Libs.navigationUi
     implementation Libs.epoxy

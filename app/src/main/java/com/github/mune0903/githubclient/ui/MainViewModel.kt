@@ -3,9 +3,9 @@ package com.github.mune0903.githubclient.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.mune0903.githubclient.data.model.User
-import com.github.mune0903.githubclient.data.remote.github.GitHubRepository
-import com.github.mune0903.githubclient.util.extension.observeOnMainThread
+import com.github.mune0903.common.extension.observeOnMainThread
+import com.github.mune0903.data.model.User
+import com.github.mune0903.data.remote.github.GitHubRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber

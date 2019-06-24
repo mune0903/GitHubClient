@@ -1,4 +1,4 @@
-package com.github.mune0903.githubclient.util.extension
+package com.github.mune0903.common.extension
 
 import com.airbnb.epoxy.CarouselModelBuilder
 import com.airbnb.epoxy.CarouselModel_

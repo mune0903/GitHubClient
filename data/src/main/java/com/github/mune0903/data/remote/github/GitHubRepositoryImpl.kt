@@ -1,7 +1,7 @@
 package com.github.mune0903.data.remote.github
 
 import android.content.Context
-import com.github.mune0903.common.observeOnMainThread
+import com.github.mune0903.common.extension.observeOnMainThread
 import com.github.mune0903.data.model.News
 import com.github.mune0903.data.model.User
 import io.reactivex.Observable

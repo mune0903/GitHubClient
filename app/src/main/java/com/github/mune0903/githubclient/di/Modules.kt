@@ -1,12 +1,12 @@
 package com.github.mune0903.githubclient.di
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.github.mune0903.githubclient.data.remote.BASE_API_URL
-import com.github.mune0903.githubclient.data.remote.BASE_OAUTH_URL
-import com.github.mune0903.githubclient.data.remote.github.GitHubRepository
-import com.github.mune0903.githubclient.data.remote.github.GitHubRepositoryImpl
-import com.github.mune0903.githubclient.data.remote.oauth.OAuthRepository
-import com.github.mune0903.githubclient.data.remote.oauth.OAuthRepositoryImpl
+import com.github.mune0903.data.remote.BASE_API_URL
+import com.github.mune0903.data.remote.BASE_OAUTH_URL
+import com.github.mune0903.data.remote.github.GitHubRepository
+import com.github.mune0903.data.remote.github.GitHubRepositoryImpl
+import com.github.mune0903.data.remote.oauth.OAuthRepository
+import com.github.mune0903.data.remote.oauth.OAuthRepositoryImpl
 import com.github.mune0903.githubclient.ui.MainViewModel
 import com.github.mune0903.githubclient.ui.news.NewsViewModel
 import com.github.mune0903.githubclient.ui.oauth.OAuthViewModel

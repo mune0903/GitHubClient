@@ -12,8 +12,6 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/data" />
-            <option value="$PROJECT_DIR$/main" />
-            <option value="$PROJECT_DIR$/oauth" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

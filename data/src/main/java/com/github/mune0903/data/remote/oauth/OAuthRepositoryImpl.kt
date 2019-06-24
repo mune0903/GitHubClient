@@ -2,7 +2,7 @@ package com.github.mune0903.data.remote.oauth
 
 import android.content.Context
 import androidx.core.content.edit
-import com.github.mune0903.common.observeOnMainThread
+import com.github.mune0903.common.extension.observeOnMainThread
 import com.github.mune0903.data.model.Token
 import io.reactivex.Observable
 import retrofit2.Retrofit

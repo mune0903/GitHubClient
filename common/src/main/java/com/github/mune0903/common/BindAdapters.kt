@@ -1,4 +1,4 @@
-package com.github.mune0903.githubclient.util
+package com.github.mune0903.common
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
