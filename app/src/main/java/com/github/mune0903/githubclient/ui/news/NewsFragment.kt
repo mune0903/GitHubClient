@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mune0903.githubclient.R
 import com.github.mune0903.githubclient.databinding.FragmentNewsBinding
 import com.github.mune0903.githubclient.ui.MainViewModel
+import com.github.mune0903.githubclient.ui.news.item.NewsSecsion
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsFragment : Fragment() {
 
@@ -20,7 +22,7 @@ class NewsFragment : Fragment() {
     private val mainViewModel: MainViewModel by inject()
     private val viewModel: NewsViewModel by inject()
 
-    private val controller = NewsItemController()
+    private val newsSection = NewsSecsion()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,8 @@ class NewsFragment : Fragment() {
 
         viewModel.apply {
             news.observe(this@NewsFragment, Observer {
-                controller.setData(NewsItemController(it))
+                //controller.setData(NewsItemController(it))
+                newsSection.updateNews(it)
                 binding.swipeRefresh.isRefreshing = false
             })
         }
@@ -58,10 +61,13 @@ class NewsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
+        val groupAdapter = GroupAdapter<ViewHolder>().apply {
+            add(newsSection)
+        }
         binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = controller.adapter
+            adapter = groupAdapter
         }
     }
 

@@ -3,7 +3,7 @@ package com.github.mune0903.data.model
 data class News(
     val actor: Actor,
     val created_at: String?,
-    val id: String?,
+    val id: String,
     val org: Org,
     val payload: Payload,
     val `public`: Boolean?,
