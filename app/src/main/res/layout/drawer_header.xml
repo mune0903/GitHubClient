@@ -30,17 +30,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:background="#f00"/>
 
-        <TextView
-                android:id="@+id/user_name_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@android:color/black"
-                android:text="@{user.login}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="mune0903"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -55,8 +55,8 @@ object Modules {
     }
 
     val repositoryModule = module {
-        factory<OAuthRepository> { OAuthRepositoryImpl(get(), get(named("oauth"))) }
-        factory<GitHubRepository> { GitHubRepositoryImpl(get(), get(named("api"))) }
+        factory { OAuthRepositoryImpl(get(), get(named("oauth"))) }
+        factory { GitHubRepositoryImpl(get(), get(named("api"))) }
     }
 
     val viewModelModule = module {
